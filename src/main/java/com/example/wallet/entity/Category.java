@@ -20,10 +20,14 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_id")
     private UUID id;
+
     @Column(name = "cat_name")
     private String name;
+
     @Column(name = "cat_type")
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
-    @Column(name = "cat_parent_id")
-    private Category parentId;
+
+//    @Column(name = "cat_parent_id")
+//    private Category parentId;
 }

@@ -19,6 +19,7 @@ public class Contractor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "contractor_id")
     private UUID id;
+
     @Column(name = "con_name")
     private String name;
 

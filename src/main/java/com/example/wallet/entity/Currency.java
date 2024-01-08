@@ -19,8 +19,10 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "currency_id")
     private UUID id;
+
     @Column(name = "cur_name")
     private String name;
+
     @Column(name = "cur_rate")
     private short rate;
 

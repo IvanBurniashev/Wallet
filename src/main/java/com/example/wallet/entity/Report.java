@@ -21,12 +21,17 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "report_id")
     private UUID id;
+
     @Column(name = "rep_name")
     private String name;
+
     @Column(name = "rep_period")
+    @Enumerated(EnumType.STRING)
     private Period period;
+
     @Column(name = "rep_date_start")
     private LocalDate dateStart;
+
     @Column(name = "rep_date_end")
     private LocalDate dateEnd;
 }

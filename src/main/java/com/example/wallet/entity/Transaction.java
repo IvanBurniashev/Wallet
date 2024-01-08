@@ -22,14 +22,20 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "transaction_id")
     private UUID id;
+
     @Column(name = "tr_date_create")
     private LocalDate dateCreate;
+
     @Column(name = "tr_type")
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
+
     @Column(name = "tr_amount")
     private BigDecimal amount;
+
     @Column(name = "tr_comment")
     private String comment;
+
     @Column(name = "tr_link_to_receip")
     private String receipt;
 }
