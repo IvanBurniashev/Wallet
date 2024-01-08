@@ -1,13 +1,25 @@
 package com.example.wallet.entity;
 
 import com.example.wallet.entity.enums.AccountType;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Entity
+@Table(name = "accounts")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "account_id")
     private UUID id;
     @Column(name = "ac_name")
