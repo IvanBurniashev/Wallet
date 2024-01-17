@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -34,4 +35,28 @@ public class Report {
 
     @Column(name = "rep_date_end")
     private LocalDate dateEnd;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Report report = (Report) o;
+        return Objects.equals(id, report.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", period=" + period +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                '}';
+    }
 }

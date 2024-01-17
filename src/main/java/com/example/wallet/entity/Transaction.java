@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -38,4 +39,29 @@ public class Transaction {
 
     @Column(name = "tr_link_to_receip")
     private String receipt;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(id, that.id) && Objects.equals(dateCreate, that.dateCreate) && type == that.type && Objects.equals(amount, that.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dateCreate, type, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", dateCreate=" + dateCreate +
+                ", type=" + type +
+                ", amount=" + amount +
+                ", comment='" + comment + '\'' +
+                ", receipt='" + receipt + '\'' +
+                '}';
+    }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -47,4 +48,32 @@ public class Budget {
 
     @Column(name = "bud_expense_amount")
     private BigDecimal expenseAmount;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Budget budget = (Budget) o;
+        return Objects.equals(id, budget.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Budget{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", oneTime=" + oneTime +
+                ", dateCreate=" + dateCreate +
+                ", period=" + period +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", incomeAmount=" + incomeAmount +
+                ", expenseAmount=" + expenseAmount +
+                '}';
+    }
 }

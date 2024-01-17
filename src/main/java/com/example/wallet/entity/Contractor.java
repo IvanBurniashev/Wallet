@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -23,4 +24,24 @@ public class Contractor {
     @Column(name = "con_name")
     private String name;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contractor that = (Contractor) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Contractor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

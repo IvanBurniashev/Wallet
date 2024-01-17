@@ -9,7 +9,11 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+
+import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "accounts")
@@ -48,9 +52,36 @@ public class Account {
     @Column(name = "ac_balance")
     private BigDecimal balance;
 
-//    @Column(name = "user_id")
-//    private User userId;
-//    @Column(name = "currency_id")
-//    private Currency currency;
-}
+    @OneToMany(mappedBy = "accounts", fetch = FetchType.LAZY, orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH})
+    @JoinColumn(name = "account_id")
+    private List<Transaction> transactionList;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(id, account.id) && Objects.equals(name, account.name) && Objects.equals(dateCreate, account.dateCreate) && type == account.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, dateCreate, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dateCreate=" + dateCreate +
+                ", dateStart=" + dateStart +
+                ", dateRecalculation=" + dateRecalculation +
+                ", type=" + type +
+                ", creditRate=" + creditRate +
+                ", depositRate=" + depositRate +
+                ", balance=" + balance +
+                ", transactionList=" + transactionList +
+                '}';
+    }
+}
